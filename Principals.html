@@ -17,6 +17,85 @@
       <a href="Drivers.html">Drivers</a>
       <a href="Principals.html">Principals</a>
     </nav>
+
+    <table border="1">
+      <tbody>
+        <tr>
+          <th>principal_id</th>
+          <th>principal_name</th>
+          <th>Teams_teams_id</th>
+        </tr>
+        <tr>
+          <th>1</th>
+          <th>Christian Horner</th>
+          <th>1</th>
+        </tr>
+        <tr>
+          <th>2</th>
+          <th>Toto Wolff</th>
+          <th>2</th>
+        </tr>
+        <tr>
+          <th>3</th>
+          <th>Frederic Vasseur</th>
+          <th>3</th>
+        </tr>
+        <tr>
+          <th>4</th>
+          <th>Otmar Szafnauer</th>
+          <th>4</th>
+        </tr>
+        <tr>
+          <th>5</th>
+          <th>James Vowels</th>
+          <th>5</th>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Add a F1 Principal</h2>
+    <fieldset>
+      <label for="principal_name">Name</label>
+      <input type="text" id="principal_name" name="principal_name" required placeholder="Joe Smith">
+      <label for="team_id">Team ID</label>
+      <select id="team_id" name="team_id">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input type="submit" value="Add Principal">
+    </fieldset>
+
+    <h2>Update a F1 Principal</h2>
+    <fieldset>
+      <label for="principal_id">Principal ID</label>
+      <input type="text" id="principal_id" name="principal_id" required>
+      <label for="principal_name">Name</label>
+      <input type="text" id="principal_name" name="principal_name" required>
+      <label for="team_id">Team ID</label>
+      <select id="team_id" name="team_id">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input type="submit" value="Confirm Edit">
+    </fieldset>
+
+    <h2>Delete a F1 Team</h2>
+    <fieldset>
+      <label for="delete_team">Team</label>
+      <select id="delete_team" name="delete_team">
+        <option value="1">Christian Horner</option>
+        <option value="2">Toto Wolff</option>
+        <option value="3">Frederic Vasseur</option>
+        <option value="4">Otmar Szafnauer</option>
+        <option value="5">James Vowels</option>
+      </select>
+    </fieldset>
     <footer>
       <p>&copy; 2023 Jason Gottlieb & Matthew French</p>
     </footer>

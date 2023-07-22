@@ -17,6 +17,83 @@
       <a href="Drivers.html">Drivers</a>
       <a href="Principals.html">Principals</a>
     </nav>
+
+    <table border="1">
+      <tbody>
+        <tr>
+          <th>team_id</th>
+          <th>team_name</th>
+          <th>team_country</th>
+          <th>car_model</th>
+        </tr>
+        <tr>
+          <th>1</th>
+          <th>Oracle Red Bull Racing</th>
+          <th>Austria</th>
+          <th>RB19</th>
+        </tr>
+        <tr>
+          <th>2</th>
+          <th>Mercedes-AMG Petronas F1</th>
+          <th>Germany</th>
+          <th>W14</th>
+        </tr>
+        <tr>
+          <th>3</th>
+          <th>Scederia Ferrari</th>
+          <th>Italy</th>
+          <th>SF-23</th>
+        </tr>
+        <tr>
+          <th>4</th>
+          <th>Williams Racing</th>
+          <th>United Kingdom</th>
+          <th>FW45</th>
+        </tr>
+        <tr>
+          <th>5</th>
+          <th>BWT Alpine F1 Team</th>
+          <th>France</th>
+          <th>A523</th>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Add a F1 Team</h2>
+    <fieldset>
+      <label for="team_name">Name</label>
+      <input type="text" id="team_name" name="team_name" required placeholder="The Racing Team">
+      <label for="team_country">Country</label>
+      <input type="text" id="team_country" name="team_country" required placeholder="United States">
+      <label for="car_model">Model</label>
+      <input type="text" id="car_model" name="car_model" required placeholder="123FastCar">
+      <input type="submit" value="Add Team">
+    </fieldset>
+
+    <h2>Update a F1 Team</h2>
+    <fieldset>
+      <label for="team_id">Team ID</label>
+      <input type="text" id="team_id" name="team_id" required>
+      <label for="team_name">Name</label>
+      <input type="text" id="team_name" name="team_name" required>
+      <label for="team_country">Country</label>
+      <input type="text" id="team_country" name="team_country" required>
+      <label for="car_model">Model</label>
+      <input type="text" id="car_model" name="car_model" required>
+      <input type="submit" value="Confirm Edit">
+    </fieldset>
+
+    <h2>Delete a F1 Team</h2>
+    <fieldset>
+      <label for="delete_team">Team</label>
+      <select id="delete_team" name="delete_team">
+        <option value="1">Oracle Red Bull Racing</option>
+        <option value="2">Mercedes-AMG Petronas F1</option>
+        <option value="3">Scederia Ferrari</option>
+        <option value="4">Williams Racing</option>
+        <option value="5">BWT Alpine F1 Team</option>
+      </select>
+    </fieldset>
     <footer>
       <p>&copy; 2023 Jason Gottlieb & Matthew French</p>
     </footer>
