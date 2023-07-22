@@ -17,6 +17,172 @@
       <a href="Drivers.html">Drivers</a>
       <a href="Principals.html">Principals</a>
     </nav>
+    <main>
+      <table>
+        <tr>
+          <th>race_id</th>
+          <th>race_name</th>
+          <th>distance_per_lap</th>
+          <th>num_laps</th>
+          <th>has_sprint</th>
+          <th>F1 Seasons_season_id</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Bahrain Grand Prix</td>
+          <td>5.142</td>
+          <td>57</td>
+          <td>0</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Saudi Arabian Grand Prix</td>
+          <td>6.174</td>
+          <td>50</td>
+          <td>0</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Australian Grand Prix</td>
+          <td>5.278</td>
+          <td>58</td>
+          <td>0</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Bahrain Grand Prix</td>
+          <td>5.142</td>
+          <td>57</td>
+          <td>0</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Saudi Arabian Grand Prix</td>
+          <td>6.174</td>
+          <td>50</td>
+          <td>0</td>
+          <td>5</td>
+        </tr>
+      </table>
+      <form action="/GrandPrix.html">
+        <fieldset>
+          <legend>Add a Grand Prix</legend>
+          <p>
+            <label for="race_name">race_name</label>
+            <input
+              type="text"
+              name="race_name"
+              id="race_name"
+              required
+              placeholder="Silverstone"
+            />
+          </p>
+          <p>
+            <label for="distance_per_lap">distance_per_lap</label>
+            <input
+              type="number"
+              name="distance_per_lap"
+              id="distance_per_lap"
+              step="0.001"
+              required
+            />
+          </p>
+          <p>
+            <label for="num_laps">num_laps</label>
+            <input type="number" name="num_laps" id="num_laps" required />
+          </p>
+          <p>
+            <label for="has_sprint">has_sprint</label>
+            <select name="has_sprint" id="has_sprint">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </p>
+          <p>
+            <label for="F1 Seasons_season_id">F1 Seasons_season_id</label>
+            <select name="F1 Seasons_season_id" id="F1 Seasons_season_id">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </p>
+          <button type="submit">Add</button>
+        </fieldset>
+      </form>
+      <form action="/GrandPrix.html">
+        <fieldset>
+          <legend>Update a Grand Prix</legend>
+          <p>
+            <label for="race_id">race_id</label>
+            <input type="number" name="race_id" id="race_id" required />
+          </p>
+          <p>
+            <label for="race_name">race_name</label>
+            <input
+              type="text"
+              name="race_name"
+              id="race_name"
+              required
+              placeholder="Silverstone"
+            />
+          </p>
+          <p>
+            <label for="distance_per_lap">distance_per_lap</label>
+            <input
+              type="number"
+              name="distance_per_lap"
+              id="distance_per_lap"
+              step="0.001"
+              required
+            />
+          </p>
+          <p>
+            <label for="num_laps">num_laps</label>
+            <input type="number" name="num_laps" id="num_laps" required />
+          </p>
+          <p>
+            <label for="has_sprint">has_sprint</label>
+            <select name="has_sprint" id="has_sprint">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </p>
+          <p>
+            <label for="F1 Seasons_season_id">F1 Seasons_season_id</label>
+            <select name="F1 Seasons_season_id" id="F1 Seasons_season_id">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </p>
+          <button type="submit">Update</button>
+        </fieldset>
+      </form>
+      <form action="/GrandPrix.html">
+        <fieldset>
+          <legend>Delete a Grand Prix</legend>
+          <p>
+            <label for="delete_Grand_Prix">race_id</label>
+            <select name="race_id" id="race_id">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">4</option>
+            </select>
+          </p>
+          <button type="submit">Delete</button>
+        </fieldset>
+      </form>
+    </main>
     <footer>
       <p>&copy; 2023 Jason Gottlieb & Matthew French</p>
     </footer>
