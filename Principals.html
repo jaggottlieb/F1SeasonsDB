@@ -71,7 +71,14 @@
     <h2>Update a F1 Principal</h2>
     <fieldset>
       <label for="principal_id">Principal ID</label>
-      <input type="text" id="principal_id" name="principal_id" required>
+      <!-- <input type="text" id="principal_id" name="principal_id" required> -->
+      <select id="principal_id" name="principal_id">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
       <label for="principal_name">Name</label>
       <input type="text" id="principal_name" name="principal_name" required>
       <label for="team_id">Team ID</label>
@@ -85,9 +92,9 @@
       <input type="submit" value="Confirm Edit">
     </fieldset>
 
-    <h2>Delete a F1 Team</h2>
+    <h2>Delete a F1 Principal</h2>
     <fieldset>
-      <label for="delete_team">Team</label>
+      <label for="delete_team">Principal</label>
       <select id="delete_team" name="delete_team">
         <option value="1">Christian Horner</option>
         <option value="2">Toto Wolff</option>
