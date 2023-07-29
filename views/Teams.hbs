@@ -10,6 +10,8 @@
     <a href="Principals.hbs">Principals</a>
 </nav>
 
+
+
 {{!-- Create a table --}}
 <table id="teams_table">
 
@@ -32,15 +34,19 @@
 
         {{!-- For each row, print the team)id, team_name, team_country, and car_model, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value = {{this.team_id}}>
             <td>{{this.team_id}}</td>
             <td>{{this.team_name}}</td>
             <td>{{this.team_country}}</td>
             <td>{{this.car_model}}</td>
+            <td><button onclick="deleteTeam({{this.team_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_team.js"></script>
+
+
 <form id="add_team_form">
     <fieldset>
         <legend>Add a F1 Team</legend>
@@ -368,20 +374,20 @@
         <p>
             <label for="team_id">Team ID</label>
             <select id="team_id" name="team_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="">Select an ID</option>
+                {{#each data}}
+                <option value="{{this.team_id}}">{{this.team_id}}</option>
+                {{/each}}
+
             </select>
         </p>
         <p>
             <label for="team_name">Team Name</label>
-            <input type="text" id="team_name" name="team_name" required>
+            <input type="text" id="update_team_name" name="update_team_name" required>
         </p>
         <p>
             <label for="team_country">Country</label>
-            <select id="driver_country" name="driver_country" class="required">
+            <select id="update_team_country" name="update_team_country" class="required">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -684,11 +690,13 @@
         </p>
         <p>
             <label for="car_model">Model</label>
-            <input type="text" id="car_model" name="car_model" required>
+            <input type="text" id="update_car_model" name="update_car_model" required>
         </p>
         <input type="submit" value="Confirm Edit">
     </fieldset>
 </form>
+
+<script src="./js/update_team.js"></script>
 
 <form action="Teams.hbs">
     <fieldset>
