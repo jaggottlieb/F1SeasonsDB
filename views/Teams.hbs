@@ -1,3 +1,4 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <header>
     <h1>Teams</h1>
 </header>
@@ -32,15 +33,17 @@
 
         {{!-- For each row, print the team)id, team_name, team_country, and car_model, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.team_id}}>
             <td>{{this.team_id}}</td>
             <td>{{this.team_name}}</td>
             <td>{{this.team_country}}</td>
             <td>{{this.car_model}}</td>
+            <td><button onclick="deleteTeam({{this.team_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_team.js"></script>
 <form id="add_team_form">
     <fieldset>
         <legend>Add a F1 Team</legend>
@@ -368,11 +371,10 @@
         <p>
             <label for="team_id">Team ID</label>
             <select id="team_id" name="team_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="">Select a team</option>
+                {{#each data}}
+                <option value="{{this.team_id}}">{{this.team_id}}</option>
+                {{/each}}
             </select>
         </p>
         <p>
@@ -687,22 +689,5 @@
             <input type="text" id="car_model" name="car_model" required>
         </p>
         <input type="submit" value="Confirm Edit">
-    </fieldset>
-</form>
-
-<form action="Teams.hbs">
-    <fieldset>
-        <legend>Delete a F1 Team</legend>
-        <p>
-            <label for="delete_team">Team</label>
-            <select id="delete_team" name="delete_team">
-                <option value="1">Oracle Red Bull Racing</option>
-                <option value="2">Mercedes-AMG Petronas F1</option>
-                <option value="3">Scederia Ferrari</option>
-                <option value="4">Williams Racing</option>
-                <option value="5">BWT Alpine F1 Team</option>
-            </select>
-        </p>
-        <input type="submit" value="Delete Team">
     </fieldset>
 </form>

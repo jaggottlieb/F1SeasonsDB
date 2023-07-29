@@ -125,6 +125,26 @@ app.post('/add_team', function (req, res) {
     })
 });
 
+app.delete('/delete_team', function (req, res, next) {
+    let data = req.body;
+    let teamID = parseInt(data.team_id);
+    let deleteTeam = `DELETE FROM Teams WHERE team_id = ?`;
+
+
+    // Run the 1st query
+    db.pool.query(deleteTeam, [teamID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else {
+            res.sendStatus(204);
+        }
+    })
+});
 // app.get('/', function (req, res) {
 //     // Define our queries
 //     query1 = 'DROP TABLE IF EXISTS diagnostic;';
