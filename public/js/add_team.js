@@ -1,5 +1,5 @@
 // Get the objects we need to modify
-let addTeamForm = document.getElementById('add-team_form');
+let addTeamForm = document.getElementById('add_team_form');
 
 // Modify the objects we need
 addTeamForm.addEventListener("submit", function (e) {
@@ -26,7 +26,7 @@ addTeamForm.addEventListener("submit", function (e) {
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "add-team", true);
+    xhttp.open("POST", "/add_team", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -57,7 +57,7 @@ addTeamForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("teams-table");
+    let currentTable = document.getElementById("teams_table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
