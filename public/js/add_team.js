@@ -17,12 +17,14 @@ addTeamForm.addEventListener("submit", function (e) {
     let teamCountryValue = addTeamCountry.value;
     let carModelValue = addCarModel.value;
 
+
     // Put our data we want to send in a javascript object
     let data = {
         team_name: teamNameValue,
         team_country: teamCountryValue,
         car_model: carModelValue,
     }
+
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
