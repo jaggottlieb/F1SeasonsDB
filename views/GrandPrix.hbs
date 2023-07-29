@@ -1,0 +1,143 @@
+<header>
+    <h1>Grand Prix</h1>
+</header>
+<nav>
+    <a href="/">Home</a>
+    <a href="F1Seasons.hbs">F1 Seasons</a>
+    <a href="GrandPrix.hbs">Grand Prix</a>
+    <a href="Teams.hbs">Teams</a>
+    <a href="Drivers.hbs">Drivers</a>
+    <a href="Principals.hbs">Principals</a>
+</nav>
+
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the race_id, race_name, distance_per_lap, num_laps, has_sprint, and F1
+        Seasons.season_id,
+        in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.race_id}}</td>
+            <td>{{this.race_name}}</td>
+            <td>{{this.distance_per_lap}}</td>
+            <td>{{this.num_laps}}</td>
+            <td>{{this.has_sprint}}</td>
+            <td>{{this.F1_Seasons_season_id}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<form action="GrandPrix.hbs">
+    <fieldset>
+        <legend>Add a Grand Prix</legend>
+        <p>
+            <label for="race_name">race_name</label>
+            <input type="text" name="race_name" id="race_name" required placeholder="Silverstone" />
+        </p>
+        <p>
+            <label for="distance_per_lap">distance_per_lap</label>
+            <input type="number" name="distance_per_lap" id="distance_per_lap" step="0.001" required />
+        </p>
+        <p>
+            <label for="num_laps">num_laps</label>
+            <input type="number" name="num_laps" id="num_laps" required />
+        </p>
+        <p>
+            <label for="has_sprint">has_sprint</label>
+            <select name="has_sprint" id="has_sprint">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </p>
+        <p>
+            <label for="F1 Seasons_season_id">F1 Seasons_season_id</label>
+            <select name="F1 Seasons_season_id" id="F1 Seasons_season_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <button type="submit">Add</button>
+    </fieldset>
+</form>
+<form action="GrandPrix.hbs">
+    <fieldset>
+        <legend>Update a Grand Prix</legend>
+        <p>
+            <label for="race_id">race_id</label>
+            <select name="race_id" id="race_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <p>
+            <label for="race_name">race_name</label>
+            <input type="text" name="race_name" id="race_name" required placeholder="Silverstone" />
+        </p>
+        <p>
+            <label for="distance_per_lap">distance_per_lap</label>
+            <input type="number" name="distance_per_lap" id="distance_per_lap" step="0.001" required />
+        </p>
+        <p>
+            <label for="num_laps">num_laps</label>
+            <input type="number" name="num_laps" id="num_laps" required />
+        </p>
+        <p>
+            <label for="has_sprint">has_sprint</label>
+            <select name="has_sprint" id="has_sprint">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </p>
+        <p>
+            <label for="F1 Seasons_season_id">F1 Seasons_season_id</label>
+            <select name="F1 Seasons_season_id" id="F1 Seasons_season_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <button type="submit">Update</button>
+    </fieldset>
+</form>
+<form action="GrandPrix.hbs">
+    <fieldset>
+        <legend>Delete a Grand Prix</legend>
+        <p>
+            <label for="delete_Grand_Prix">race_id</label>
+            <select name="race_id" id="race_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">4</option>
+            </select>
+        </p>
+        <button type="submit">Delete</button>
+    </fieldset>
+</form>

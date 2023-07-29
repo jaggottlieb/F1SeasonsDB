@@ -1,0 +1,113 @@
+<header>
+    <h1>Principals</h1>
+</header>
+<nav>
+    <a href="/">Home</a>
+    <a href="F1Seasons.hbs">F1 Seasons</a>
+    <a href="GrandPrix.hbs">Grand Prix</a>
+    <a href="Teams.hbs">Teams</a>
+    <a href="Drivers.hbs">Drivers</a>
+    <a href="Principals.hbs">Principals</a>
+</nav>
+
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the principal_id, principal_name, and Teams_team_id, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.principal_id}}</td>
+            <td>{{this.principal_name}}</td>
+            <td>{{this.Teams_team_id}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<form action="Principals.hbs">
+    <fieldset>
+        <legend>Add a F1 Principal</legend>
+        <p>
+            <label for="principal_name">Name</label>
+            <input type="text" id="principal_name" name="principal_name" required placeholder="Joe Smith">
+        </p>
+        <p>
+            <label for="team_id">Team ID</label>
+
+
+            <select id="team_id" name="team_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <input type="submit" value="Add Principal">
+    </fieldset>
+</form>
+
+<form action="Principals.hbs">
+    <fieldset>
+        <legend>Update a F1 Principal</legend>
+        <p><label for="principal_id">Principal ID</label>
+            <select id="principal_id" name="principal_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <p>
+            <label for="principal_name">Name</label>
+            <input type="text" id="principal_name" name="principal_name" required>
+        </p>
+        <p>
+            <label for="team_id">Team ID</label>
+            <select id="team_id" name="team_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+
+        <input type="submit" value="Confirm Edit">
+    </fieldset>
+</form>
+
+<form action="Principals.hbs">
+    <fieldset>
+        <legend>Delete a F1 Principal</legend>
+        <p>
+            <label for="delete_principal">Principal</label>
+            <select id="delete_principal" name="delete_principal">
+                <option value="1">Christian Horner</option>
+                <option value="2">Toto Wolff</option>
+                <option value="3">Frederic Vasseur</option>
+                <option value="4">Otmar Szafnauer</option>
+                <option value="5">James Vowels</option>
+            </select>
+        </p>
+        <input type="submit" value="Delete Principal">
+    </fieldset>
+</form>
