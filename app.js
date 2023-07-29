@@ -10,7 +10,12 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app = express();            // We need to instantiate an express object to interact with the server in our code
-PORT = 60352;                 // Set a port number at the top so it's easy to change in the future
+
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static('public'))
+
+PORT = 60351;                 // Set a port number at the top so it's easy to change in the future
 
 
 
@@ -91,7 +96,7 @@ app.post('/add_team', function (req, res) {
     // Capture NULL values
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Teams (team_name, team_country, car_model) VALUES ('${data.team_name}', '${data.team_country}', '${data.car_model}')`;
+    query1 = `INSERT INTO Teams (team_name, team_country, car_model) VALUES ('${data['team_name']}', '${data['team_country']}', '${data['car_model']}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
