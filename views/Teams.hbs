@@ -365,12 +365,12 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_team.js"></script>
 
-<form action="Teams.hbs">
+<form id="update_team_form">
     <fieldset>
         <legend>Update a F1 Team</legend>
         <p>
-            <label for="team_id">Team ID</label>
-            <select id="team_id" name="team_id">
+            <label for="update_team_id">Team ID</label>
+            <select id="update_team_id" name="update_team_id">
                 <option value="">Select a team</option>
                 {{#each data}}
                 <option value="{{this.team_id}}">{{this.team_id}}</option>
@@ -378,12 +378,12 @@
             </select>
         </p>
         <p>
-            <label for="team_name">Team Name</label>
-            <input type="text" id="team_name" name="team_name" required>
+            <label for="update_team_name">Team Name</label>
+            <input type="text" id="update_team_name" name="update_team_name" required>
         </p>
         <p>
-            <label for="team_country">Country</label>
-            <select id="driver_country" name="driver_country" class="required">
+            <label for="update_team_country">Country</label>
+            <select id="update_team_country" name="update_team_country" class="required">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -685,9 +685,11 @@
             </select>
         </p>
         <p>
-            <label for="car_model">Model</label>
-            <input type="text" id="car_model" name="car_model" required>
+            <label for="update_car_model">Model</label>
+            <input type="text" id="update_car_model" name="update_car_model" required>
         </p>
-        <input type="submit" value="Confirm Edit">
+        <input type="submit">
     </fieldset>
 </form>
+
+<script src="./js/update_team.js"></script>

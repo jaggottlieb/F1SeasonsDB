@@ -145,35 +145,34 @@ app.delete('/delete_team', function (req, res, next) {
         }
     })
 });
-// app.get('/', function (req, res) {
-//     // Define our queries
-//     query1 = 'DROP TABLE IF EXISTS diagnostic;';
-//     query2 = 'CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);';
-//     query3 = 'INSERT INTO diagnostic (text) VALUES ("MySQL is working!")';
-//     query4 = 'SELECT * FROM diagnostic;';
 
-//     // Execute every query in an asynchronous manner, we want each query to finish before the next one starts
 
-//     // DROP TABLE...
-//     db.pool.query(query1, function (err, results, fields) {
+app.put('/update_team', function (req, res, next) {
+    let data = req.body;
 
-//         // CREATE TABLE...
-//         db.pool.query(query2, function (err, results, fields) {
+    let team_id = parseInt(data.team_id)
+    let team_name = data.team_name;
+    let team_country = data.team_country;
+    let car_model = data.car_model;
 
-//             // INSERT INTO...
-//             db.pool.query(query3, function (err, results, fields) {
+    let queryUpdateTeam = `UPDATE Teams SET team_name = ?, team_country = ?, car_model = ? WHERE Teams.team_id = ?`;
 
-//                 // SELECT *...
-//                 db.pool.query(query4, function (err, results, fields) {
+    // Run the 1st query
+    db.pool.query(queryUpdateTeam, [team_name, team_country, car_model, team_id], function (error, rows, fields) {
+        if (error) {
 
-//                     // Send the results to the browser
-//                     let base = "<h1>MySQL Results:</h1>"
-//                     res.send(base + JSON.stringify(results));
-//                 });
-//             });
-//         });
-//     });
-// });
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else {
+            res.send(rows)
+        }
+    })
+});
 
 
 /*
