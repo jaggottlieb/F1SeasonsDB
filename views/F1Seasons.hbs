@@ -1,0 +1,98 @@
+<header>
+    <h1>F1 Seasons</h1>
+</header>
+<nav>
+    <a href="/">Home</a>
+    <a href="F1Seasons.hbs">F1 Seasons</a>
+    <a href="GrandPrix.hbs">Grand Prix</a>
+    <a href="Teams.hbs">Teams</a>
+    <a href="Drivers.hbs">Drivers</a>
+    <a href="Principals.hbs">Principals</a>
+</nav>
+
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the season_id, num_race, and year, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.season_id}}</td>
+            <td>{{this.num_races}}</td>
+            <td>{{this.year}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<form action="F1Seasons.hbs">
+    <fieldset>
+        <legend>Add a F1 Season</legend>
+        <p>
+            <label for="num_races">num_races</label>
+            <input type="number" name="num_races" id="num_races" min="1" max="99" required
+                placeholder="Number of races" />
+        </p>
+        <p>
+            <label for="year">year</label>
+            <input type="number" name="year" id="year" required placeholder="1950 - present" />
+        </p>
+        <button type="submit">Add</button>
+    </fieldset>
+</form>
+<form action="F1Seasons.hbs">
+    <fieldset>
+        <legend>Update a F1 Season</legend>
+        <p>
+            <label for="season_id">season_id</label>
+            <select name="season_id" id="season_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <p>
+            <label for="num_races">num_races</label>
+            <input type="number" name="num_races" id="num_races" min="1" max="99" required
+                placeholder="Number of races" />
+        </p>
+        <p>
+            <label for="year">year</label>
+            <input type="number" name="year" id="year" required placeholder="1950 - present" />
+        </p>
+        <button type="submit">Update</button>
+    </fieldset>
+</form>
+<form action="F1Seasons.hbs">
+    <fieldset>
+        <legend>Delete a F1 Season</legend>
+        <p>
+            <label for="delete_f1_season">Season</label>
+            <select name="year" id="year">
+                <option value="1">2019</option>
+                <option value="2">2020</option>
+                <option value="3">2021</option>
+                <option value="4">2022</option>
+                <option value="5">2023</option>
+            </select>
+        </p>
+        <button type="submit">Delete</button>
+    </fieldset>
+</form>
