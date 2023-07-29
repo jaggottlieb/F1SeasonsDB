@@ -84,14 +84,14 @@ app.get('/Principals.hbs', function (req, res) {
 });                                                         // received back from the query
 
 // POST ROUTES
-app.post('/add-team', function (req, res) {
+app.post('/add_team', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
     // Capture NULL values
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Teams (team_name, team_country, car_model) VALUES ('${data.team_name}', '${data.team_country}', ${data.car_model})`;
+    query1 = `INSERT INTO Teams (team_name, team_country, car_model) VALUES ('${data.team_name}', '${data.team_country}', '${data.car_model}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
