@@ -26,7 +26,7 @@ addTeamForm.addEventListener("submit", function (e) {
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-team", true);
+    xhttp.open("POST", "add-team", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -74,10 +74,10 @@ addRowToTable = (data) => {
     let carModelCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    idCell.innerText = newRow.id;
-    teamNameCell.innerText = newRow.fname;
-    teamCountryCell.innerText = newRow.lname;
-    carModelCell.innerText = newRow.homeworld;
+    idCell.innerText = newRow.team_id;
+    teamNameCell.innerText = newRow.team_name;
+    teamCountryCell.innerText = newRow.team_country;
+    carModelCell.innerText = newRow.car_model;
 
     // Add the cells to the row 
     row.appendChild(idCell);
