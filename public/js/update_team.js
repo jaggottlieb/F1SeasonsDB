@@ -1,3 +1,9 @@
+// Citation for the following code:
+// Date: 07/31/2023
+// Copied From
+// OSU nodejs-starter-app Github. Modified to run with our database
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+
 // Get the objects we need to modify
 let updatePersonForm = document.getElementById('update_team_form');
 

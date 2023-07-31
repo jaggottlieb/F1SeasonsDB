@@ -1,8 +1,8 @@
 // Citation for the following code:
-// Date: 06/26/2023
+// Date: 07/31/2023
 // Copied from
-// OSU Course CS340 Intro to Databases Activity 2. Modified slightly to have a unique port
-// Source URL: https://canvas.oregonstate.edu/courses/1922991/assignments/9287060?module_item_id=23329570 
+// OSU nodejs-starter-app Github. Modified to run with our database
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main 
 
 /*
     SETUP
@@ -166,7 +166,7 @@ app.put('/update_team', function (req, res, next) {
             res.sendStatus(400);
         }
 
-        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // If there was no error, return that data so we can use it to update the people's
         // table on the front-end
         else {
             res.send(rows)
