@@ -377,9 +377,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         <p>
             <label for="update_team_id">Team ID</label>
             <select id="update_team_id" name="update_team_id">
-                <option value="">Select a team</option>
+                <option value="">Select a Team</option>
                 {{#each data}}
-                <option value="{{this.team_id}}">{{this.team_id}}</option>
+                <option value="{{this.team_id}}">{{this.team_name}}</option>
                 {{/each}}
             </select>
         </p>

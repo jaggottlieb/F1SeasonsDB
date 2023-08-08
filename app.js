@@ -71,9 +71,18 @@ app.get('/Teams.hbs', function (req, res) {
 app.get('/Drivers.hbs', function (req, res) {
     let query1 = "SELECT * FROM `Drivers`;";               // Define our query
 
+    let query2 = "SELECT * FROM `Teams`;";
+
     db.pool.query(query1, function (error, rows, fields) {    // Execute the query
 
-        res.render('Drivers', { data: rows });                  // Render the index.hbs file, and also send the renderer
+        let drivers = rows
+
+        db.pool.query(query2, (error, rows, fields) => {
+
+            let teams = rows;
+            return res.render('Drivers', { data: drivers, teams: teams });
+        })
+        // Render the index.hbs file, and also send the renderer
     })                                                      // an object where 'data' is equal to the 'rows' we
 });                                                         // received back from the query
 
@@ -173,6 +182,118 @@ app.put('/update_team', function (req, res, next) {
         }
     })
 });
+
+app.post('/add_driver', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let points = parseInt(data.lifetime_points);
+    if (isNaN(points)) {
+        points = 'NULL'
+    }
+
+    let wins = parseInt(data.lifetime_wins);
+    if (isNaN(wins)) {
+        wins = 'NULL'
+    }
+
+    let poles = parseInt(data.lifetime_poles);
+    if (isNaN(poles)) {
+        poles = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Drivers (driver_name, driver_country, lifetime_points, lifetime_wins, lifetime_poles, Teams_team_id) VALUES ('${data.driver_name}', '${data.driver_country}', ${points}, ${wins}, ${poles}, ${data.Teams_team_id})`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Drivers;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+app.delete('/delete_driver', function (req, res, next) {
+    let data = req.body;
+    let driver_id = parseInt(data.driver_id);
+    let deleteDriver = `DELETE FROM Drivers WHERE driver_id = ?`;
+
+
+    // Run the 1st query
+    db.pool.query(deleteDriver, [driver_id], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+app.put('/update_driver', function (req, res, next) {
+    let data = req.body;
+
+    let driver_id = parseInt(data.driver_id);
+    let driver_name = data.fullname;
+    let driver_country = data.driver_country;
+    let lifetime_points = parseInt(data.lifetime_points);
+    let lifetime_wins = parseInt(data.lifetime_wins);
+    let lifetime_poles = parseInt(data.lifetime_poles);
+    let Teams_team_id = parseInt(data.Teams_team_id)
+
+    if (isNaN(Teams_team_id)) {
+        Teams_team_id = 'NULL'
+    }
+
+
+
+    let queryUpdateDriver = `UPDATE Drivers SET driver_name = ?, driver_country = ?, lifetime_points = ?, lifetime_wins = ?, lifetime_poles = ?, Teams_team_id = ? WHERE Drivers.driver_id = ?`;
+
+
+    // Run the 1st query
+    db.pool.query(queryUpdateDriver, [driver_name, driver_country, lifetime_points, lifetime_wins, lifetime_poles, Teams_team_id, driver_id], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else {
+            res.send(rows)
+        }
+    })
+});
+
 
 
 /*
