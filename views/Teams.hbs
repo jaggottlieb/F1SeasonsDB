@@ -41,7 +41,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 
         {{!-- For each row, print the team)id, team_name, team_country, and car_model, in order --}}
         {{#each data}}
-        <tr data-value = {{this.team_id}}>
+        <tr data-value={{this.team_id}}>
             <td>{{this.team_id}}</td>
             <td>{{this.team_name}}</td>
             <td>{{this.team_country}}</td>
@@ -52,8 +52,6 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
     </tbody>
 </table>
 <script src="./js/delete_team.js"></script>
-
-
 <form id="add_team_form">
     <fieldset>
         <legend>Add a F1 Team</legend>
@@ -379,21 +377,20 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
     <fieldset>
         <legend>Update a F1 Team</legend>
         <p>
-            <label for="team_id">Team ID</label>
-            <select id="team_id" name="team_id">
-                <option value="">Select an ID</option>
+            <label for="update_team_id">Team ID</label>
+            <select id="update_team_id" name="update_team_id">
+                <option value="">Select a team</option>
                 {{#each data}}
                 <option value="{{this.team_id}}">{{this.team_id}}</option>
                 {{/each}}
-
             </select>
         </p>
         <p>
-            <label for="team_name">Team Name</label>
+            <label for="update_team_name">Team Name</label>
             <input type="text" id="update_team_name" name="update_team_name" required>
         </p>
         <p>
-            <label for="team_country">Country</label>
+            <label for="update_team_country">Country</label>
             <select id="update_team_country" name="update_team_country" class="required">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -696,7 +693,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
             </select>
         </p>
         <p>
-            <label for="car_model">Model</label>
+            <label for="update_car_model">Model</label>
             <input type="text" id="update_car_model" name="update_car_model" required>
         </p>
         <input type="submit">
@@ -704,20 +701,3 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 </form>
 
 <script src="./js/update_team.js"></script>
-
-<form action="Teams.hbs">
-    <fieldset>
-        <legend>Delete a F1 Team</legend>
-        <p>
-            <label for="delete_team">Team</label>
-            <select id="delete_team" name="delete_team">
-                <option value="1">Oracle Red Bull Racing</option>
-                <option value="2">Mercedes-AMG Petronas F1</option>
-                <option value="3">Scederia Ferrari</option>
-                <option value="4">Williams Racing</option>
-                <option value="5">BWT Alpine F1 Team</option>
-            </select>
-        </p>
-        <input type="submit" value="Delete Team">
-    </fieldset>
-</form>

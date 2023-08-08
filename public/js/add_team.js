@@ -81,18 +81,37 @@ addRowToTable = (data) => {
     let teamCountryCell = document.createElement("TD");
     let carModelCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+
+
     // Fill the cells with correct data
     idCell.innerText = newRow.team_id;
     teamNameCell.innerText = newRow.team_name;
     teamCountryCell.innerText = newRow.team_country;
     carModelCell.innerText = newRow.car_model;
 
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function () {
+        deleteTeam(newRow.team_id);
+    };
+
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(teamNameCell);
     row.appendChild(teamCountryCell);
     row.appendChild(carModelCell);
+    row.appendChild(deleteCell)
+
+    // Add a row attribute so the deleteRow function can find a newly added row
+    row.setAttribute('data-value', newRow.team_id);
 
     // Add the row to the table
     currentTable.appendChild(row);
+
+    let selectMenu = document.getElementById("update_team_id");
+    let option = document.createElement("option");
+    option.text = newRow.team_id;
+    option.value = newRow.team_id;
+    selectMenu.add(option);
 }

@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `cs340_gottlija`.`Drivers` (
   `lifetime_points` DECIMAL(18),
   `lifetime_wins` INT,
   `lifetime_poles` INT,
-  `Teams_team_id` INT NOT NULL,
+  `Teams_team_id` INT,
   PRIMARY KEY (`driver_id`, `Teams_team_id`),
   UNIQUE INDEX `driver_id_UNIQUE` (`driver_id` ASC),
   INDEX `fk_Drivers_Teams1_idx` (`Teams_team_id` ASC),
