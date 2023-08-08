@@ -4,6 +4,7 @@ Table Code copied from
 OSU nodejs-starter-app Github. Modified to run with our database
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --}}
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <header>
     <h1>F1 Seasons</h1>
 </header>
@@ -17,7 +18,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 </nav>
 
 {{!-- Create a table --}}
-<table>
+<table id="seasons_table">
 
     {{!-- Header section --}}
     <thead>
@@ -38,7 +39,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 
         {{!-- For each row, print the season_id, num_race, and year, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.season_id}}>
             <td>{{this.season_id}}</td>
             <td>{{this.num_races}}</td>
             <td>{{this.year}}</td>
@@ -46,21 +47,23 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         {{/each}}
     </tbody>
 </table>
-<form action="F1Seasons.hbs">
+<form id="add_season_form">
     <fieldset>
         <legend>Add a F1 Season</legend>
         <p>
-            <label for="num_races">num_races</label>
-            <input type="number" name="num_races" id="num_races" min="1" max="99" required
+            <label for="add_num_races">num_races</label>
+            <input type="number" name="add_num_races" id="add_num_races" min="1" max="99" required
                 placeholder="Number of races" />
         </p>
         <p>
-            <label for="year">year</label>
-            <input type="number" name="year" id="year" required placeholder="1950 - present" />
+            <label for="add_year">year</label>
+            <input type="number" name="add_year" id="add_year" required placeholder="1950 - present" />
         </p>
         <button type="submit">Add</button>
     </fieldset>
 </form>
+<script src="./js/add_season.js"></script>
+
 <form action="F1Seasons.hbs">
     <fieldset>
         <legend>Update a F1 Season</legend>

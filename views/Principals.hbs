@@ -4,6 +4,7 @@ Table Code copied from
 OSU nodejs-starter-app Github. Modified to run with our database
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --}}
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <header>
     <h1>Principals</h1>
 </header>
@@ -17,7 +18,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 </nav>
 
 {{!-- Create a table --}}
-<table>
+<table id="principals_table">
 
     {{!-- Header section --}}
     <thead>
@@ -38,7 +39,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 
         {{!-- For each row, print the principal_id, principal_name, and Teams_team_id, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.principal_id}}>
             <td>{{this.principal_id}}</td>
             <td>{{this.principal_name}}</td>
             <td>{{this.Teams_team_id}}</td>
@@ -47,28 +48,30 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
     </tbody>
 </table>
 
-<form action="Principals.hbs">
+<form id="add_principal_form">
     <fieldset>
         <legend>Add a F1 Principal</legend>
         <p>
-            <label for="principal_name">Name</label>
-            <input type="text" id="principal_name" name="principal_name" required placeholder="Joe Smith">
+            <label for="add_principal_name">Name</label>
+            <input type="text" id="add_principal_name" name="add_principal_name" required placeholder="Joe Smith">
         </p>
         <p>
-            <label for="team_id">Team ID</label>
+            <label for="add_Teams_team_id">Team ID</label>
 
 
-            <select id="team_id" name="team_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+            <select id="add_Teams_team_id" name="add_Teams_team_id">
+                <option value="">Select a Team</option>
+                {{#each teams}}
+                <option value="{{this.team_id}}">{{this.team_name}}</option>
+                {{/each}}
+                
             </select>
         </p>
-        <input type="submit" value="Add Principal">
+        <input type="submit">
     </fieldset>
 </form>
+
+<script src="./js/add_principal.js"></script>
 
 <form action="Principals.hbs">
     <fieldset>
@@ -87,8 +90,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
             <input type="text" id="principal_name" name="principal_name" required>
         </p>
         <p>
-            <label for="team_id">Team ID</label>
-            <select id="team_id" name="team_id">
+            <label for="Teams_team_id">Team ID</label>
+            <select id="Teams_team_id" name="Teams_team_id">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -100,6 +103,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         <input type="submit" value="Confirm Edit">
     </fieldset>
 </form>
+
+
 
 <form action="Principals.hbs">
     <fieldset>
