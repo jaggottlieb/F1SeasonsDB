@@ -1,3 +1,10 @@
+{{!-- Citation for the following code:
+Date: 07/31/2023
+Copied From
+OSU nodejs-starter-app Github. Modified to run with our database
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <header>
     <h1>Teams</h1>
 </header>
@@ -368,7 +375,7 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_team.js"></script>
 
-<form action="Teams.hbs">
+<form id="update_team_form">
     <fieldset>
         <legend>Update a F1 Team</legend>
         <p>
@@ -692,7 +699,7 @@
             <label for="car_model">Model</label>
             <input type="text" id="update_car_model" name="update_car_model" required>
         </p>
-        <input type="submit" value="Confirm Edit">
+        <input type="submit">
     </fieldset>
 </form>
 

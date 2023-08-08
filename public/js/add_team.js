@@ -1,3 +1,9 @@
+// Citation for the following code:
+// Date: 07/31/2023
+// Copied From
+// OSU nodejs-starter-app Github. Modified to run with our database
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+
 // Get the objects we need to modify
 let addTeamForm = document.getElementById('add_team_form');
 
@@ -17,12 +23,14 @@ addTeamForm.addEventListener("submit", function (e) {
     let teamCountryValue = addTeamCountry.value;
     let carModelValue = addCarModel.value;
 
+
     // Put our data we want to send in a javascript object
     let data = {
         team_name: teamNameValue,
         team_country: teamCountryValue,
         car_model: carModelValue,
     }
+
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
@@ -38,7 +46,7 @@ addTeamForm.addEventListener("submit", function (e) {
 
             // Clear the input fields for another transaction
             addTeamName.value = '';
-            addTeamCountry.value = '';
+            addTeamCountry.value = 'United States';
             addCarModel.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -73,36 +81,18 @@ addRowToTable = (data) => {
     let teamCountryCell = document.createElement("TD");
     let carModelCell = document.createElement("TD");
 
-    let deleteCell = document.createElement("TD");
-
     // Fill the cells with correct data
     idCell.innerText = newRow.team_id;
     teamNameCell.innerText = newRow.team_name;
     teamCountryCell.innerText = newRow.team_country;
     carModelCell.innerText = newRow.car_model;
 
-    deleteCell = document.createElement("button");
-    deleteCell.innerHTML = "Delete";
-    deleteCell.onclick = function(){
-        deleteTeam(newRow.team_id);
-    };
-
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(teamNameCell);
     row.appendChild(teamCountryCell);
     row.appendChild(carModelCell);
-    row.appendChild(deleteCell);
-
-    row.setAttribute('data-value', newRow.team_id);
 
     // Add the row to the table
     currentTable.appendChild(row);
-
-
-    let selectMenu = document.getElementById("update_team_name");
-    let option = document.createElement("option");
-    option.text = newRow.team_id;
-    option.value = newRow.team_id;
-    selectMenu.add(option);
 }
