@@ -111,7 +111,7 @@ addRowToTable = (data) => {
 
     let selectMenu = document.getElementById("update_team_id");
     let option = document.createElement("option");
-    option.text = newRow.team_id;
+    option.text = newRow.team_name;
     option.value = newRow.team_id;
     selectMenu.add(option);
 }

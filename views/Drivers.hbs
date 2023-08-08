@@ -3,7 +3,7 @@ Date: 07/31/2023
 Table Code copied from
 OSU nodejs-starter-app Github. Modified to run with our database
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --}}
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <header>
     <h1>Drivers</h1>
 </header>
@@ -17,7 +17,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 </nav>
 
 {{!-- Create a table --}}
-<table>
+<table id="drivers_table">
 
     {{!-- Header section --}}
     <thead>
@@ -39,7 +39,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         {{!-- For each row, print the driver_id, driver_name, driver_country, lifetime_points, lifetime_wins,
         lifetime_poles, and Teams_team_id, in order --}}
         {{#each data}}
-        <tr>
+        <tr data_value={{this.driver_id}}>
             <td>{{this.driver_id}}</td>
             <td>{{this.driver_name}}</td>
             <td>{{this.driver_country}}</td>
@@ -47,20 +47,24 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
             <td>{{this.lifetime_wins}}</td>
             <td>{{this.lifetime_poles}}</td>
             <td>{{this.Teams_team_id}}</td>
+            <td><button onclick="deleteDriver({{this.driver_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-<form action="Drivers.hbs">
+
+<script src="./js/delete_driver.js"></script>
+
+<form id="add_driver_form">
     <fieldset>
         <legend>Add a Driver</legend>
         <p>
-            <label for="driver_name">driver_name</label>
-            <input type="text" name="driver_name" id="driver_name" required placeholder="Michael Schumacher" />
+            <label for="add_driver_name">driver_name</label>
+            <input type="text" name="add_driver_name" id="add_driver_name" required placeholder="Michael Schumacher" />
         </p>
         <p>
-            <label for="driver_country">driver_country</label>
-            <select id="driver_country" name="driver_country" class="required">
+            <label for="add_driver_country">driver_country</label>
+            <select id="add_driver_country" name="add_driver_country" class="required">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -362,50 +366,55 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
             </select>
         </p>
         <p>
-            <label for="lifetime_points">lifetime_points</label>
-            <input type="number" name="lifetime_points" id="lifetime_points" step="0.01" required />
+            <label for="add_lifetime_points">lifetime_points</label>
+            <input type="number" name="add_lifetime_points" id="add_lifetime_points" step="0.01" />
         </p>
         <p>
-            <label for="lifetime_wins">lifetime_wins</label>
-            <input type="number" name="lifetime_wins" id="lifetime_wins" required />
+            <label for="add_lifetime_wins">lifetime_wins</label>
+            <input type="number" name="add_lifetime_wins" id="add_lifetime_wins" />
         </p>
         <p>
-            <label for="lifetime_poles">lifetime_poles</label>
-            <input type="number" name="lifetime_poles" id="lifetime_poles" required />
+            <label for="add_lifetime_poles">lifetime_poles</label>
+            <input type="number" name="add_lifetime_poles" id="add_lifetime_poles" />
         </p>
         <p>
-            <label for="Teams_team_id">Teams_team_id</label>
-            <select name="Teams_team_id" id="Teams_team_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="4">4</option>
+            <label for="add_Teams_team_id">Teams_team_id</label>
+            <select name="add_Teams_team_id" id="add_Teams_team_id">
+                <option value="">Select a Team</option>
+                {{#each teams}}
+                <option value="{{this.team_id}}">{{this.team_name}}</option>
+                {{/each}}
+                <option value="">Retired (NULL)</option>
             </select>
         </p>
-        <button type="submit">Add</button>
+        <input type="submit">
     </fieldset>
 </form>
-<form action="Drivers.hbs">
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_driver.js"></script>
+
+<form id="update_driver_form">
     <fieldset>
         <legend>Update a Driver</legend>
         <p>
-            <label for="driver_id">driver_id</label>
-            <select name="driver_id" id="driver_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+            <label for="update_driver_id">driver_id</label>
+            <select name="update_driver_id" id="update_driver_id">
+                <option value="">Select a Driver</option>
+                {{#each data}}
+                <option value="{{this.driver_id}}">{{this.driver_name}}</option>
+                {{/each}}
+            </select>
             </select>
         </p>
         <p>
-            <label for="driver_name">driver_name</label>
-            <input type="text" name="driver_name" id="driver_name" required placeholder="Michael Schumacher" />
+            <label for="update_driver_name">driver_name</label>
+            <input type="text" name="update_driver_name" id="update_driver_name" required
+                placeholder="Michael Schumacher" />
         </p>
         <p>
-            <label for="driver_country">driver_country</label>
-            <select id="driver_country" name="driver_country" class="required">
+            <label for="update_driver_country">driver_country</label>
+            <select id="update_driver_country" name="update_driver_country" class="required">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -707,43 +716,29 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
             </select>
         </p>
         <p>
-            <label for="lifetime_points">lifetime_points</label>
-            <input type="number" name="lifetime_points" id="lifetime_points" step="0.01" required />
+            <label for="update_lifetime_points">lifetime_points</label>
+            <input type="number" name="update_lifetime_points" id="update_lifetime_points" step="0.01" />
         </p>
         <p>
-            <label for="lifetime_wins">lifetime_wins</label>
-            <input type="number" name="lifetime_wins" id="lifetime_wins" required />
+            <label for="update_lifetime_wins">lifetime_wins</label>
+            <input type="number" name="update_lifetime_wins" id="update_lifetime_wins" />
         </p>
         <p>
-            <label for="lifetime_poles">lifetime_poles</label>
-            <input type="number" name="lifetime_poles" id="lifetime_poles" required />
+            <label for="update_lifetime_poles">lifetime_poles</label>
+            <input type="number" name="update_lifetime_poles" id="update_lifetime_poles" />
         </p>
         <p>
-            <label for="Teams_team_id">Teams_team_id</label>
-            <select name="Teams_team_id" id="Teams_team_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="4">4</option>
+            <label for="update_Teams_team_id">Teams_team_id</label>
+            <select name="update_Teams_team_id" id="update_Teams_team_id">
+                <option value="">Select a Team</option>
+                {{#each teams}}
+                <option value="{{this.team_id}}">{{this.team_name}}</option>
+                {{/each}}
+                <option value="">Retired (NULL)</option>
             </select>
         </p>
-        <button type="submit">Update</button>
+        <input type="submit">
     </fieldset>
 </form>
-<form action="Drivers.hbs">
-    <fieldset>
-        <legend>Delete a Driver</legend>
-        <p>
-            <label for="delete_driver">Driver</label>
-            <select name="driver_name" id="driver_name">
-                <option value="1">Max Verstappen</option>
-                <option value="2">Lewis Hamilton</option>
-                <option value="3">Charles Leclerc</option>
-                <option value="4">Esteban Ocon</option>
-                <option value="5">Alex Albon</option>
-            </select>
-        </p>
-        <button type="submit">Delete</button>
-    </fieldset>
-</form>
+
+<script src="./js/update_driver.js"></script>
