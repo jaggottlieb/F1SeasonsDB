@@ -15,6 +15,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
     <a href="Teams.hbs">Teams</a>
     <a href="Drivers.hbs">Drivers</a>
     <a href="Principals.hbs">Principals</a>
+    <a href="GrandPrixTeams.hbs">Grand Prix Teams</a>
 </nav>
 
 {{!-- Create a table --}}
@@ -64,7 +65,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
                 {{#each teams}}
                 <option value="{{this.team_id}}">{{this.team_name}}</option>
                 {{/each}}
-                
+
             </select>
         </p>
         <input type="submit">

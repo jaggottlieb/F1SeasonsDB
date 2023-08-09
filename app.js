@@ -104,6 +104,32 @@ app.get('/Principals.hbs', function (req, res) {
 });                                                         // received back from the query
 
 
+app.get('/GrandPrixTeams.hbs', function (req, res) {
+    let query1 = "SELECT F1_Seasons.year , `Grand_Prix`.race_name, Teams.team_name FROM `Grand_Prix_has_Teams` JOIN `Grand_Prix` ON `Grand_Prix_has_Teams`.`Grand_Prix_race_id` = `Grand_Prix`.race_id JOIN Teams ON `Grand_Prix_has_Teams`.Teams_team_id = Teams.team_id JOIN `F1_Seasons` on `Grand_Prix`.`F1_Seasons_season_id` = `F1_Seasons`.season_id;";               // Define our query
+    let query2 = "SELECT * FROM `Teams`;";
+    let query3 = "SELECT * FROM `F1_Seasons`;";
+
+    db.pool.query(query1, function (error, rows, fields) {    // Execute the query
+        let join = rows
+
+        db.pool.query(query2, (error, rows, fields) => {
+
+            let teams = rows;
+
+            db.pool.query(query3, (error, rows, fields) => {
+
+                let season = rows;
+
+                res.render('GrandPrixTeams', { data: join, teams: teams, season, season });                  // Render the index.hbs file, and also send the renderer
+
+            })
+
+        })
+
+
+    })                                                      // an object where 'data' is equal to the 'rows' we
+});
+
 
 // POST ROUTES
 app.post('/add_team', function (req, res) {

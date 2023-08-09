@@ -1,0 +1,50 @@
+{{!-- Citation for the following code:
+Date: 07/31/2023
+Table Code copied from
+OSU nodejs-starter-app Github. Modified to run with our database
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --}}
+<header>
+    <h1>Grand Prix Teams</h1>
+</header>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="F1Seasons.hbs">F1 Seasons</a>
+    <a href="GrandPrix.hbs">Grand Prix</a>
+    <a href="Teams.hbs">Teams</a>
+    <a href="Drivers.hbs">Drivers</a>
+    <a href="Principals.hbs">Principals</a>
+    <a href="GrandPrixTeams.hbs">Grand Prix Teams</a>
+</nav>
+
+{{!-- Create a table --}}
+<table id="GrandPrixTeams_table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the driver_id, driver_name, driver_country, lifetime_points, lifetime_wins,
+        lifetime_poles, and Teams_team_id, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.year}}</td>
+            <td>{{this.race_name}}</td>
+            <td>{{this.team_name}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
