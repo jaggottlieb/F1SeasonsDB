@@ -60,7 +60,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         <legend>Add a Driver</legend>
         <p>
             <label for="add_driver_name">driver_name</label>
-            <input type="text" name="add_driver_name" id="add_driver_name" required placeholder="Michael Schumacher" />
+            <input type="text" name="add_driver_name" id="add_driver_name" required placeholder="Michael Schumacher"
+                required />
         </p>
         <p>
             <label for="add_driver_country">driver_country</label>
@@ -734,7 +735,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
                 {{#each teams}}
                 <option value="{{this.team_id}}">{{this.team_name}}</option>
                 {{/each}}
-                <option value="">Retired (NULL)</option>
+                <option value="NULL">Retired (NULL)</option>
             </select>
         </p>
         <input type="submit">

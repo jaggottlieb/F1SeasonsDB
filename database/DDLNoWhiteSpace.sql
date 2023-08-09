@@ -56,7 +56,7 @@ ENGINE = InnoDB;
 -- Table `cs340_gottlija`.`Teams`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cs340_gottlija`.`Teams` (
-  `team_id` INT NOT NULL AUTO_INCREMENT,
+  `team_id` INT AUTO_INCREMENT,
   `team_name` VARCHAR(255) NOT NULL,
   `team_country` VARCHAR(45) NOT NULL,
   `car_model` VARCHAR(45) NOT NULL,
@@ -76,13 +76,13 @@ CREATE TABLE IF NOT EXISTS `cs340_gottlija`.`Drivers` (
   `lifetime_wins` INT,
   `lifetime_poles` INT,
   `Teams_team_id` INT,
-  PRIMARY KEY (`driver_id`, `Teams_team_id`),
+  PRIMARY KEY (`driver_id`),
   UNIQUE INDEX `driver_id_UNIQUE` (`driver_id` ASC),
   INDEX `fk_Drivers_Teams1_idx` (`Teams_team_id` ASC),
   CONSTRAINT `fk_Drivers_Teams1`
     FOREIGN KEY (`Teams_team_id`)
     REFERENCES `cs340_gottlija`.`Teams` (`team_id`)
-    ON DELETE CASCADE
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -93,7 +93,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cs340_gottlija`.`Principals` (
   `principal_id` INT NOT NULL AUTO_INCREMENT,
   `principal_name` VARCHAR(45) NOT NULL,
-  `Teams_team_id` INT NOT NULL,
+  `Teams_team_id` INT,
   PRIMARY KEY (`principal_id`, `Teams_team_id`),
   UNIQUE INDEX `principal_id_UNIQUE` (`principal_id` ASC),
   INDEX `fk_Principals_Teams_idx` (`Teams_team_id` ASC),
@@ -110,7 +110,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cs340_gottlija`.`Grand_Prix_has_Teams` (
   `Grand_Prix_race_id` INT NOT NULL,
-  `Teams_team_id` INT NOT NULL,
+  `Teams_team_id` INT,
   PRIMARY KEY (`Grand_Prix_race_id`, `Teams_team_id`),
   INDEX `fk_Grand_Prix_has_Teams_Teams1_idx` (`Teams_team_id` ASC),
   INDEX `fk_Grand_Prix_has_Teams_Grand_Prix1_idx` (`Grand_Prix_race_id` ASC),

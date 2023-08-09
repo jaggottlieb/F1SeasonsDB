@@ -13,7 +13,7 @@ var app = express();            // We need to instantiate an express object to i
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
-PORT = 60359;                 // Set a port number at the top so it's easy to change in the future
+PORT = 60360;                 // Set a port number at the top so it's easy to change in the future
 
 
 
@@ -97,7 +97,7 @@ app.get('/Principals.hbs', function (req, res) {
 
             // Save the planets
             let teams = rows;
-            return res.render('Principals', {data: principals, teams: teams});
+            return res.render('Principals', { data: principals, teams: teams });
         })
 
     })                                                      // an object where 'data' is equal to the 'rows' we
@@ -341,20 +341,22 @@ app.put('/update_driver', function (req, res, next) {
     let data = req.body;
 
     let driver_id = parseInt(data.driver_id);
-    let driver_name = data.fullname;
+    let driver_name = data.driver_name;
     let driver_country = data.driver_country;
     let lifetime_points = parseInt(data.lifetime_points);
     let lifetime_wins = parseInt(data.lifetime_wins);
     let lifetime_poles = parseInt(data.lifetime_poles);
     let Teams_team_id = parseInt(data.Teams_team_id)
 
-    if (isNaN(Teams_team_id)) {
-        Teams_team_id = 'NULL'
-    }
-
-
-
     let queryUpdateDriver = `UPDATE Drivers SET driver_name = ?, driver_country = ?, lifetime_points = ?, lifetime_wins = ?, lifetime_poles = ?, Teams_team_id = ? WHERE Drivers.driver_id = ?`;
+
+    console.log(driver_id)
+
+    if (isNaN(Teams_team_id)) {
+        queryUpdateDriver = `UPDATE Drivers SET driver_name = ?, driver_country = ?, lifetime_points = ?, lifetime_wins = ?, lifetime_poles = ?, Teams_team_id = NULL WHERE Drivers.driver_id = ?`;
+        console.log(queryUpdateDriver)
+        console.log(driver_id)
+    }
 
 
     // Run the 1st query

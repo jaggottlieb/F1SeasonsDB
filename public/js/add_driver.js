@@ -119,6 +119,7 @@ addRowToTable = (data) => {
     row.appendChild(lifetimeWinsCell);
     row.appendChild(lifetimePolesCell);
     row.appendChild(driverTeamCell);
+    row.appendChild(deleteCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
     row.setAttribute('data_value', newRow.driver_id);
@@ -129,6 +130,6 @@ addRowToTable = (data) => {
     let selectMenu = document.getElementById("update_driver_id");
     let option = document.createElement("option");
     option.text = newRow.driver_id;
-    option.value = newRow.driver_id;
+    option.value = newRow.driver_name;
     selectMenu.add(option);
 }
