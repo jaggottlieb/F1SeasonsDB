@@ -1,12 +1,4 @@
-// Citation for the following code:
-// Date: 08/08/2023
-// Copied From
-// OSU nodejs-starter-app Github. Modified to run with our database
-// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
-
-
-// Get the objects we need to modify
-let addTeamForm = document.getElementById('add_season_form');
+let addTeamForm = document.getElementById('add_grand_prix_form');
 
 // Modify the objects we need
 addTeamForm.addEventListener("submit", function (e) {
@@ -15,25 +7,33 @@ addTeamForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let addNumRaces = document.getElementById("add_num_races");
-    let addYear = document.getElementById("add_year");
-
+    let addRaceName = document.getElementById("add_race_name");
+    let addDistancePerLap = document.getElementById("add_distance_per_lap");
+    let addNumLaps = document.getElementById("add_num_laps");
+    let addHasSprint = document.getElementById("add_has_sprint");
+    let addF1SeasonsId = document.getElementById("add_F1_Seasons_season_id");
 
     // Get the values from the form fields
-    let numRacesValue = addNumRaces.value;
-    let yearValue = addYear.value;
+    let raceNameValue = addRaceName.value;
+    let distancePerLapValue = addDistancePerLap.value;
+    let numLapsValue = addNumLaps.value;
+    let hasSprintValue = addHasSprint.value;
+    let f1SeasonsIdValue = addF1SeasonsId.value;
 
 
     // Put our data we want to send in a javascript object
     let data = {
-        num_races: numRacesValue,
-        year: yearValue,
+        race_name: raceNameValue,
+        distance_per_lap: distancePerLapValue,
+        num_laps: numLapsValue,
+        has_sprint: hasSprintValue,
+        F1_Seasons_season_id: f1SeasonsIdValue
     }
 
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add_season", true);
+    xhttp.open("POST", "/add_grand_prix", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -44,8 +44,12 @@ addTeamForm.addEventListener("submit", function (e) {
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            addNumRaces.value = '';
-            addYear.value = '';
+            addRaceName.value = '';
+            addDistancePerLap.value = '';
+            addNumLaps.value = '';
+            addHasSprint.value = '';
+            addF1SeasonsId.value = '';
+
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -63,7 +67,7 @@ addTeamForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("seasons_table");
+    let currentTable = document.getElementById("grand_prix_table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -75,17 +79,22 @@ addRowToTable = (data) => {
     // Create a row and 4 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let numRacesCell = document.createElement("TD");
-    let yearCell = document.createElement("TD");
+    let raceNameCell = document.createElement("TD");
+    let distanePerLapCell = document.createElement("TD");
+    let numLapsCell = document.createElement("TD");
+    let hasSprintCell = document.createElement("TD");
+    let f1SeasonsIdCell = document.createElement("TD");
 
     // let deleteCell = document.createElement("TD");
 
 
     // Fill the cells with correct data
-    idCell.innerText = newRow.season_id;
-    numRacesCell.innerText = newRow.num_races;
-    yearCell.innerText = newRow.year;
-
+    idCell.innerText = newRow.race_id;
+    raceNameCell.innerText = newRow.race_name;
+    distanePerLapCell.innerText = newRow.distance_per_lap;
+    numLapsCell.innerText = newRow.num_laps;
+    hasSprintCell.innerText = newRow.has_sprint;
+    f1SeasonsIdCell.innerText = newRow.F1_Seasons_season_id;
 
     // deleteCell = document.createElement("button");
     // deleteCell.innerHTML = "Delete";
@@ -95,19 +104,22 @@ addRowToTable = (data) => {
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(numRacesCell);
-    row.appendChild(yearCell);
+    row.appendChild(raceNameCell);
+    row.appendChild(distanePerLapCell);
+    row.appendChild(numLapsCell);
+    row.appendChild(hasSprintCell);
+    row.appendChild(f1SeasonsIdCell);
     // row.appendChild(deleteCell)
 
     // Add a row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.season_id);
+    row.setAttribute('data-value', newRow.race_id);
 
     // Add the row to the table
     currentTable.appendChild(row);
 
     // let selectMenu = document.getElementById("update_team_id");
     let option = document.createElement("option");
-    option.text = newRow.season_id;
-    option.value = newRow.season_id;
+    option.text = newRow.race_name;
+    option.value = newRow.race_id;
     // selectMenu.add(option);
 }

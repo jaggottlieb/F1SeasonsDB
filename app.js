@@ -13,7 +13,7 @@ var app = express();            // We need to instantiate an express object to i
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
-PORT = 60360;                 // Set a port number at the top so it's easy to change in the future
+PORT = 60362;                 // Set a port number at the top so it's easy to change in the future
 
 
 
@@ -212,6 +212,47 @@ app.post('/add_season', function (req, res) {
         }
     })
 });
+
+
+app.post('/add_grand_prix', function (req, res) {
+    let data = req.body;
+    let distance_per_lap_FLOAT = parseFloat(data.distance_per_lap);
+    let num_laps_INT = parseInt(data.num_laps);
+    let has_sprint_INT = parseInt(data.has_sprint);
+    let F1_Seasons_season_id_INT = parseInt(data.F1_Seasons_season_id);
+
+
+    query1 = `INSERT INTO Grand_Prix (race_name, distance_per_lap, num_laps, has_sprint, F1_Seasons_season_id) VALUES ( '${data.race_name}', '${distance_per_lap_FLOAT}', '${num_laps_INT}', '${has_sprint_INT}', '${F1_Seasons_season_id_INT}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Grand_Prix;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
 
 
 app.delete('/delete_team', function (req, res, next) {

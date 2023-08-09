@@ -4,6 +4,7 @@ Table Code copied from
 OSU nodejs-starter-app Github. Modified to run with our database
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --}}
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <header>
     <h1>Grand Prix</h1>
 </header>
@@ -17,7 +18,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 </nav>
 
 {{!-- Create a table --}}
-<table>
+<table id="grand_prix_table">
 
     {{!-- Header section --}}
     <thead>
@@ -40,7 +41,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         Seasons.season_id,
         in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.race_id}}>
             <td>{{this.race_id}}</td>
             <td>{{this.race_name}}</td>
             <td>{{this.distance_per_lap}}</td>
@@ -51,31 +52,31 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         {{/each}}
     </tbody>
 </table>
-<form action="GrandPrix.hbs">
+<form id="add_grand_prix_form">
     <fieldset>
         <legend>Add a Grand Prix</legend>
         <p>
-            <label for="race_name">race_name</label>
-            <input type="text" name="race_name" id="race_name" required placeholder="Silverstone" />
+            <label for="add_race_name">race_name</label>
+            <input type="text" name="add_race_name" id="add_race_name" required placeholder="Silverstone" />
         </p>
         <p>
-            <label for="distance_per_lap">distance_per_lap</label>
-            <input type="number" name="distance_per_lap" id="distance_per_lap" step="0.001" required />
+            <label for="add_distance_per_lap">distance_per_lap</label>
+            <input type="number" name="add_distance_per_lap" id="add_distance_per_lap" step="0.001" required />
         </p>
         <p>
-            <label for="num_laps">num_laps</label>
-            <input type="number" name="num_laps" id="num_laps" required />
+            <label for="add_num_laps">num_laps</label>
+            <input type="number" name="add_num_laps" id="add_num_laps" required />
         </p>
         <p>
-            <label for="has_sprint">has_sprint</label>
-            <select name="has_sprint" id="has_sprint">
+            <label for="add_has_sprint">has_sprint</label>
+            <select name="add_has_sprint" id="add_has_sprint">
                 <option value="0">No</option>
                 <option value="1">Yes</option>
             </select>
         </p>
         <p>
-            <label for="F1 Seasons_season_id">F1 Seasons_season_id</label>
-            <select name="F1 Seasons_season_id" id="F1 Seasons_season_id">
+            <label for="add_F1_Seasons_season_id">F1 Seasons_season_id</label>
+            <select name="add_F1_Seasons_season_id" id="add_F1_Seasons_season_id">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -83,9 +84,14 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
                 <option value="5">5</option>
             </select>
         </p>
-        <button type="submit">Add</button>
+        {{!-- <button type="submit">Add</button> --}}
+        <input type="submit">
     </fieldset>
 </form>
+
+<script src="./js/add_grand_prix.js"></script>
+
+
 <form action="GrandPrix.hbs">
     <fieldset>
         <legend>Update a Grand Prix</legend>
@@ -131,6 +137,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         <button type="submit">Update</button>
     </fieldset>
 </form>
+
+
+
 <form action="GrandPrix.hbs">
     <fieldset>
         <legend>Delete a Grand Prix</legend>
