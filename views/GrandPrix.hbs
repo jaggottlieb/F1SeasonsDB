@@ -18,7 +18,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
     <a href="GrandPrixTeams.hbs">Grand Prix Teams</a>
 </nav>
 
-{{!-- Create a table --}}
+{{!-- Create a Grand Prix table --}}
 <table id="grand_prix_table">
 
     {{!-- Header section --}}
@@ -83,7 +83,6 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
                 {{/each}}
             </select>
         </p>
-        {{!-- <button type="submit">Add</button> --}}
         <input type="submit">
     </fieldset>
 </form>
@@ -91,67 +90,3 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
 <script src="./js/add_grand_prix.js"></script>
 
 
-<form action="GrandPrix.hbs">
-    <fieldset>
-        <legend>Update a Grand Prix</legend>
-        <p>
-            <label for="race_id">race_id</label>
-            <select name="race_id" id="race_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </p>
-        <p>
-            <label for="race_name">race_name</label>
-            <input type="text" name="race_name" id="race_name" required placeholder="Silverstone" />
-        </p>
-        <p>
-            <label for="distance_per_lap">distance_per_lap</label>
-            <input type="number" name="distance_per_lap" id="distance_per_lap" step="0.001" required />
-        </p>
-        <p>
-            <label for="num_laps">num_laps</label>
-            <input type="number" name="num_laps" id="num_laps" required />
-        </p>
-        <p>
-            <label for="has_sprint">has_sprint</label>
-            <select name="has_sprint" id="has_sprint">
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-            </select>
-        </p>
-        <p>
-            <label for="F1 Seasons_season_id">F1 Seasons_season_id</label>
-            <select name="F1 Seasons_season_id" id="F1 Seasons_season_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </p>
-        <button type="submit">Update</button>
-    </fieldset>
-</form>
-
-
-
-<form action="GrandPrix.hbs">
-    <fieldset>
-        <legend>Delete a Grand Prix</legend>
-        <p>
-            <label for="delete_Grand_Prix">race_id</label>
-            <select name="race_id" id="race_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">4</option>
-            </select>
-        </p>
-        <button type="submit">Delete</button>
-    </fieldset>
-</form>

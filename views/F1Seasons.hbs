@@ -18,7 +18,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
     <a href="GrandPrixTeams.hbs">Grand Prix Teams</a>
 </nav>
 
-{{!-- Create a table --}}
+{{!-- Create a seasons table --}}
 <table id="seasons_table">
 
     {{!-- Header section --}}
@@ -64,45 +64,3 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
     </fieldset>
 </form>
 <script src="./js/add_season.js"></script>
-
-<form action="F1Seasons.hbs">
-    <fieldset>
-        <legend>Update a F1 Season</legend>
-        <p>
-            <label for="season_id">season_id</label>
-            <select name="season_id" id="season_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </p>
-        <p>
-            <label for="num_races">num_races</label>
-            <input type="number" name="num_races" id="num_races" min="1" max="99" required
-                placeholder="Number of races" />
-        </p>
-        <p>
-            <label for="year">year</label>
-            <input type="number" name="year" id="year" required placeholder="1950 - present" />
-        </p>
-        <button type="submit">Update</button>
-    </fieldset>
-</form>
-<form action="F1Seasons.hbs">
-    <fieldset>
-        <legend>Delete a F1 Season</legend>
-        <p>
-            <label for="delete_f1_season">Season</label>
-            <select name="year" id="year">
-                <option value="1">2019</option>
-                <option value="2">2020</option>
-                <option value="3">2021</option>
-                <option value="4">2022</option>
-                <option value="5">2023</option>
-            </select>
-        </p>
-        <button type="submit">Delete</button>
-    </fieldset>
-</form>
