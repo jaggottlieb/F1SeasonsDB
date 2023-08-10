@@ -79,22 +79,22 @@ function updateRow(data, team_id, object) {
             // Get the location of the row where we found the matching person ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of homeworld value
+            // Get td of team_name value
             let tdTeamName = updateRowIndex.getElementsByTagName("td")[1];
 
-            // Reassign homeworld to our value we updated to
+            // Reassign team_name to our value we updated to
             tdTeamName.innerHTML = object.team_name;
 
-            // Get td of homeworld value
+            // Get td of team_country value
             let tdTeamCountry = updateRowIndex.getElementsByTagName("td")[2];
 
-            // Reassign homeworld to our value we updated to
+            // Reassign team_country to our value we updated to
             tdTeamCountry.innerHTML = object.team_country;
 
-            // Get td of homeworld value
+            // Get td of car_model value
             let tdCarModel = updateRowIndex.getElementsByTagName("td")[3];
 
-            // Reassign homeworld to our value we updated to
+            // Reassign car_model to our value we updated to
             tdCarModel.innerHTML = object.car_model;
         }
     }
