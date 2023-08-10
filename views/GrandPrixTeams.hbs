@@ -3,6 +3,10 @@ Date: 07/31/2023
 Table Code copied from
 OSU nodejs-starter-app Github. Modified to run with our database
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 <header>
     <h1>Grand Prix Teams</h1>
 </header>
@@ -48,3 +52,31 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         {{/each}}
     </tbody>
 </table>
+
+<form id="add_GrandPrixTeam_form">
+    <fieldset>
+        <legend>Add a Team to a Race</legend>
+        <p>
+            <label for="add_race_id">Race ID</label>
+            <select name="add_race_id" id="add_race_id" required>
+                <option value="">Select a Grand Prix</option>
+                {{#each races}}
+                <option value="{{this.race_id}}">{{this.race_name}} ({{this.year}})</option>
+                {{/each}}
+            </select>
+        </p>
+        <p>
+            <label for="add_team_id">Team ID</label>
+            <select name="add_team_id" id="add_team_id" required>
+                <option value="">Select a Team</option>
+                {{#each team}}
+                <option value="{{this.team_id}}">{{this.team_name}}</option>
+                {{/each}}
+            </select>
+        </p>
+        <input type="submit">
+    </fieldset>
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_GrandPrixTeam.js"></script>

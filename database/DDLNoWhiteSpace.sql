@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cs340_gottlija`.`Grand_Prix` (
   `race_id` INT NOT NULL AUTO_INCREMENT,
   `race_name` VARCHAR(255) NOT NULL,
-  `distance_per_lap` DECIMAL(18) NOT NULL,
+  `distance_per_lap` DECIMAL(18,3) NOT NULL,
   `num_laps` INT NOT NULL,
   `has_sprint` TINYINT NOT NULL DEFAULT 0,
   `F1_Seasons_season_id` INT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `cs340_gottlija`.`Drivers` (
   `driver_id` INT NOT NULL AUTO_INCREMENT,
   `driver_name` VARCHAR(255) NOT NULL,
   `driver_country` VARCHAR(45) NOT NULL,
-  `lifetime_points` DECIMAL(18),
+  `lifetime_points` DECIMAL(18,1),
   `lifetime_wins` INT,
   `lifetime_poles` INT,
   `Teams_team_id` INT,

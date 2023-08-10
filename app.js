@@ -106,21 +106,21 @@ app.get('/Principals.hbs', function (req, res) {
 
 app.get('/GrandPrixTeams.hbs', function (req, res) {
     let query1 = "SELECT F1_Seasons.year , `Grand_Prix`.race_name, Teams.team_name FROM `Grand_Prix_has_Teams` JOIN `Grand_Prix` ON `Grand_Prix_has_Teams`.`Grand_Prix_race_id` = `Grand_Prix`.race_id JOIN Teams ON `Grand_Prix_has_Teams`.Teams_team_id = Teams.team_id JOIN `F1_Seasons` on `Grand_Prix`.`F1_Seasons_season_id` = `F1_Seasons`.season_id;";               // Define our query
-    let query2 = "SELECT * FROM `Teams`;";
-    let query3 = "SELECT * FROM `F1_Seasons`;";
+    let query2 = "SELECT F1_Seasons.year, Grand_Prix.race_name, Grand_Prix.race_id, Grand_Prix.F1_Seasons_season_id FROM Grand_Prix JOIN F1_Seasons ON Grand_Prix.F1_Seasons_season_id = F1_Seasons.season_id;";
+    let query3 = "SELECT * FROM `Teams`;";
 
     db.pool.query(query1, function (error, rows, fields) {    // Execute the query
         let join = rows
 
         db.pool.query(query2, (error, rows, fields) => {
 
-            let teams = rows;
+            let races = rows;
 
             db.pool.query(query3, (error, rows, fields) => {
 
-                let season = rows;
+                let team = rows;
 
-                res.render('GrandPrixTeams', { data: join, teams: teams, season, season });                  // Render the index.hbs file, and also send the renderer
+                res.render('GrandPrixTeams', { data: join, races: races, team, team });                  // Render the index.hbs file, and also send the renderer
 
             })
 
@@ -376,14 +376,6 @@ app.put('/update_driver', function (req, res, next) {
 
     let queryUpdateDriver = `UPDATE Drivers SET driver_name = ?, driver_country = ?, lifetime_points = ?, lifetime_wins = ?, lifetime_poles = ?, Teams_team_id = ? WHERE Drivers.driver_id = ?`;
 
-    console.log(driver_id)
-
-    if (isNaN(Teams_team_id)) {
-        queryUpdateDriver = `UPDATE Drivers SET driver_name = ?, driver_country = ?, lifetime_points = ?, lifetime_wins = ?, lifetime_poles = ?, Teams_team_id = NULL WHERE Drivers.driver_id = ?`;
-        console.log(queryUpdateDriver)
-        console.log(driver_id)
-    }
-
 
     // Run the 1st query
     db.pool.query(queryUpdateDriver, [driver_name, driver_country, lifetime_points, lifetime_wins, lifetime_poles, Teams_team_id, driver_id], function (error, rows, fields) {
@@ -398,6 +390,45 @@ app.put('/update_driver', function (req, res, next) {
         // table on the front-end
         else {
             res.send(rows)
+        }
+    })
+});
+
+app.post('/add_GrandPrixTeam', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    console.log('Made it to POST')
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Grand_Prix_has_Teams (Grand_Prix_race_id, Teams_team_id) VALUES ('${data.race_id}', '${data.team_id}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            console.log('Made it to Query2')
+            query2 = "SELECT F1_Seasons.year , `Grand_Prix`.race_name, Teams.team_name FROM `Grand_Prix_has_Teams` JOIN `Grand_Prix` ON `Grand_Prix_has_Teams`.`Grand_Prix_race_id` = `Grand_Prix`.race_id JOIN Teams ON `Grand_Prix_has_Teams`.Teams_team_id = Teams.team_id JOIN `F1_Seasons` on `Grand_Prix`.`F1_Seasons_season_id` = `F1_Seasons`.season_id;";
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
         }
     })
 });
