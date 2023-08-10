@@ -5,7 +5,6 @@
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
 
 // Get the objects we need to modify
-console.log('Inside JS')
 
 let addGrandPrixTeam = document.getElementById('add_GrandPrixTeam_form');
 
@@ -29,21 +28,18 @@ addGrandPrixTeam.addEventListener("submit", function (e) {
         team_id: teamIDValue,
     }
 
-    console.log('Made Data')
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/add_GrandPrixTeam", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
-    console.log('Sent Data')
 
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            console.log('Adding Row to Table')
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
@@ -62,7 +58,7 @@ addGrandPrixTeam.addEventListener("submit", function (e) {
 
 
 // Creates a single row from an Object representing a single record from 
-// bsg_people
+// Grand_Prix_has_Teams
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.

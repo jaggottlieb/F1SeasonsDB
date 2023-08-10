@@ -46,30 +46,30 @@ app.get('/F1Seasons.hbs', function (req, res) {
 
     db.pool.query(query1, function (error, rows, fields) {    // Execute the query
 
-        res.render('F1Seasons', { data: rows });                  // Render the index.hbs file, and also send the renderer
-    })                                                      // an object where 'data' is equal to the 'rows' we
-});                                                         // received back from the query
+        res.render('F1Seasons', { data: rows });              // Render the index.hbs file, and also send the renderer
+    })                                                        // an object where 'data' is equal to the 'rows' we
+});                                                           // received back from the query
 
 app.get('/GrandPrix.hbs', function (req, res) {
     let query1 = "SELECT * FROM `Grand_Prix`;";               // Define our query
 
     db.pool.query(query1, function (error, rows, fields) {    // Execute the query
 
-        res.render('GrandPrix', { data: rows });                  // Render the index.hbs file, and also send the renderer
-    })                                                      // an object where 'data' is equal to the 'rows' we
-});                                                         // received back from the query
+        res.render('GrandPrix', { data: rows });              // Render the index.hbs file, and also send the renderer
+    })                                                        // an object where 'data' is equal to the 'rows' we
+});                                                           // received back from the query
 
 app.get('/Teams.hbs', function (req, res) {
-    let query1 = "SELECT * FROM `Teams`;";               // Define our query
+    let query1 = "SELECT * FROM `Teams`;";                    // Define our query
 
     db.pool.query(query1, function (error, rows, fields) {    // Execute the query
 
         res.render('Teams', { data: rows });                  // Render the index.hbs file, and also send the renderer
-    })                                                      // an object where 'data' is equal to the 'rows' we
-});                                                         // received back from the query
+    })                                                        // an object where 'data' is equal to the 'rows' we
+});                                                           // received back from the query
 
 app.get('/Drivers.hbs', function (req, res) {
-    let query1 = "SELECT * FROM `Drivers`;";               // Define our query
+    let query1 = "SELECT * FROM `Drivers`;";                  // Define our query
 
     let query2 = "SELECT * FROM `Teams`;";
 
@@ -81,10 +81,9 @@ app.get('/Drivers.hbs', function (req, res) {
 
             let teams = rows;
             return res.render('Drivers', { data: drivers, teams: teams });
-        })
-        // Render the index.hbs file, and also send the renderer
-    })                                                      // an object where 'data' is equal to the 'rows' we
-});                                                         // received back from the query
+        })                                                   // Render the index.hbs file, and also send the renderer                                                
+    })                                                       // an object where 'data' is equal to the 'rows' we
+});                                                          // received back from the query
 
 app.get('/Principals.hbs', function (req, res) {
     let query1 = "SELECT * FROM `Principals`;";               // Define our query
@@ -95,7 +94,7 @@ app.get('/Principals.hbs', function (req, res) {
 
         db.pool.query(query2, (error, rows, fields) => {
 
-            // Save the planets
+            // Save the Teams
             let teams = rows;
             return res.render('Principals', { data: principals, teams: teams });
         })
@@ -121,13 +120,9 @@ app.get('/GrandPrixTeams.hbs', function (req, res) {
                 let team = rows;
 
                 res.render('GrandPrixTeams', { data: join, races: races, team, team });                  // Render the index.hbs file, and also send the renderer
-
-            })
-
+            })                                                                                           // an object where 'data' is equal to the 'rows' we
         })
-
-
-    })                                                      // an object where 'data' is equal to the 'rows' we
+    })
 });
 
 
@@ -135,8 +130,6 @@ app.get('/GrandPrixTeams.hbs', function (req, res) {
 app.post('/add_team', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-
-    // Capture NULL values
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Teams (team_name, team_country, car_model) VALUES ('${data.team_name}', '${data.team_country}', '${data.car_model}')`;
@@ -150,7 +143,7 @@ app.post('/add_team', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Teams
             query2 = `SELECT * FROM Teams;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -185,7 +178,7 @@ app.post('/add_principal', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Principals
             query2 = `SELECT * FROM Principals;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -219,7 +212,7 @@ app.post('/add_season', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on F1_Seasons
             query2 = `SELECT * FROM F1_Seasons;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -259,7 +252,7 @@ app.post('/add_grand_prix', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Grand_Prix
             query2 = `SELECT * FROM Grand_Prix;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -321,7 +314,6 @@ app.put('/update_team', function (req, res, next) {
             console.log(error);
             res.sendStatus(400);
         }
-
         // If there was no error, return that data so we can use it to update the people's
         // table on the front-end
         else {
@@ -362,7 +354,7 @@ app.post('/add_driver', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Drivers
             query2 = `SELECT * FROM Drivers;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -427,7 +419,7 @@ app.put('/update_driver', function (req, res, next) {
             res.sendStatus(400);
         }
 
-        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // If there was no error, we run our second query and return that data so we can use it to update the Drivers
         // table on the front-end
         else {
             res.send(rows)
@@ -453,7 +445,7 @@ app.post('/add_GrandPrixTeam', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a JOIN on Grand_Prix_has_Teams
             console.log('Made it to Query2')
             query2 = "SELECT F1_Seasons.year , `Grand_Prix`.race_name, Teams.team_name FROM `Grand_Prix_has_Teams` JOIN `Grand_Prix` ON `Grand_Prix_has_Teams`.`Grand_Prix_race_id` = `Grand_Prix`.race_id JOIN Teams ON `Grand_Prix_has_Teams`.Teams_team_id = Teams.team_id JOIN `F1_Seasons` on `Grand_Prix`.`F1_Seasons_season_id` = `F1_Seasons`.season_id;";
             db.pool.query(query2, function (error, rows, fields) {
