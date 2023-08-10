@@ -103,9 +103,9 @@ addRowToTable = (data) => {
     // Add the row to the table
     currentTable.appendChild(row);
 
-    let selectMenu = document.getElementById("update_principal_id");
+    // let selectMenu = document.getElementById("update_principal_id");
     let option = document.createElement("option");
     option.text = newRow.principal_id;
-    option.value = newRow.principal_id;
-    selectMenu.add(option);
+    option.value = newRow.principal_name;
+    // selectMenu.add(option);
 }
