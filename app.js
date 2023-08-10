@@ -8,13 +8,23 @@
     SETUP
 */
 // Express
+
+var favicon = require('serve-favicon');
+
+
 var express = require('express');   // We are using the express library for the web server
 var app = express();            // We need to instantiate an express object to interact with the server in our code
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+<<<<<<< HEAD
 PORT = 60362;                 // Set a port number at the top so it's easy to change in the future
+=======
+PORT = 60365;                 // Set a port number at the top so it's easy to change in the future
+>>>>>>> latestMattBranch
 
+var favicon = require('serve-favicon');
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 
 // Database
