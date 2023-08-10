@@ -1,3 +1,9 @@
+/* Citation for the following code:
+Date: 08/10/2023
+Copied From
+w3schools
+Source URL: https://www.w3schools.com/css/default.asp */
+
 table, th, td {
     border: 1px solid;
 }
