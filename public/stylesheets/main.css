@@ -2,6 +2,63 @@ table, th, td {
     border: 1px solid;
 }
 
-/* table {
-    border: 5px solid;
-} */
+body{
+    background-size: cover;
+}
+
+img {
+    border: 1px solid #0f0f0f;
+    border-radius: 4px;
+    padding: 2px;
+    width: 500px;
+    /* display: flex; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+
+header {
+    padding: 6px;
+    text-align: center;
+    background: #bf2424;
+    color: white;
+    font-size: 15px;
+  }
+
+nav{
+    text-align: left;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1em;
+    column-gap: 1em;
+  }
+
+nav a{
+    background-color: #bf2424;
+    /* border: 5px solid white; */
+    color: white;
+    font-weight: bolder;
+    margin-right: 0px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #bf2424;
+}
+
+fieldset {
+    border-color: #bf2424;
+}
+
+legend {
+    margin-bottom:0px;
+    margin-left:16px;
+    font-weight: bold;
+}
