@@ -52,12 +52,19 @@ app.get('/F1Seasons.hbs', function (req, res) {
 
 app.get('/GrandPrix.hbs', function (req, res) {
     let query1 = "SELECT * FROM `Grand_Prix`;";               // Define our query
+    let query2 = "SELECT * FROM `F1_Seasons`;";
 
     db.pool.query(query1, function (error, rows, fields) {    // Execute the query
 
-        res.render('GrandPrix', { data: rows });              // Render the index.hbs file, and also send the renderer
-    })                                                        // an object where 'data' is equal to the 'rows' we
-});                                                           // received back from the query
+        let races = rows
+
+        db.pool.query(query2, (error, rows, fields) => {
+
+            let seasons = rows;
+            return res.render('GrandPrix', { data: races, seasons: seasons });  // Render the index.hbs file, and also send the renderer
+        })                                                                      // an object where 'data' is equal to the 'rows' we
+    })                                                                         // received back from the query
+});
 
 app.get('/Teams.hbs', function (req, res) {
     let query1 = "SELECT * FROM `Teams`;";                    // Define our query

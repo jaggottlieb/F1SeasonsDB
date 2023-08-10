@@ -78,11 +78,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main --
         <p>
             <label for="add_F1_Seasons_season_id">F1 Seasons_season_id</label>
             <select name="add_F1_Seasons_season_id" id="add_F1_Seasons_season_id">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                {{#each seasons}}
+                <option value="{{this.season_id}}">{{this.year}}</option>
+                {{/each}}
             </select>
         </p>
         {{!-- <button type="submit">Add</button> --}}
