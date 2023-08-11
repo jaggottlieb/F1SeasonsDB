@@ -17,7 +17,7 @@ var app = express();            // We need to instantiate an express object to i
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
-PORT = 60366;                 // Set a port number at the top so it's easy to change in the future
+PORT = 60368;                 // Set a port number at the top so it's easy to change in the future
 
 var favicon = require('serve-favicon');
 app.use(favicon(__dirname + '/public/images/favicon.ico'));

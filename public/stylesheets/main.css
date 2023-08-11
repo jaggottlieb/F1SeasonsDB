@@ -4,9 +4,22 @@ Copied From
 w3schools
 Source URL: https://www.w3schools.com/css/default.asp */
 
-table, th, td {
+
+table {
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    width: 200px;
     border: 1px solid;
 }
+
+td {
+    border: 1px solid;
+}
+
 
 body{
     background-size: cover;
@@ -16,8 +29,7 @@ img {
     border: 1px solid #0f0f0f;
     border-radius: 4px;
     padding: 2px;
-    width: 500px;
-    /* display: flex; */
+    width: 250px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -30,7 +42,7 @@ header {
     text-align: center;
     background: #bf2424;
     color: white;
-    font-size: 15px;
+    font-size: 25px;
   }
 
 nav{
@@ -46,7 +58,6 @@ nav{
 
 nav a{
     background-color: #bf2424;
-    /* border: 5px solid white; */
     color: white;
     font-weight: bolder;
     margin-right: 0px;
