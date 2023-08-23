@@ -1,8 +1,3 @@
-# CS340Project
+# F1 Seasons Database
 
-
-This is a test change from Jason on the OSU Flip2 Server
-
-This is a test change from Matt on the OSU Flip2 Server
-
-latestMattBranch test
+This project was created for the Oregon State University CS 340 Introduction to Databases class in the Summer 2023 term. The goals of the project were to create a website that would implement the UI for a database that supported CRUD operations. To see more specific requirements of the project please see the Project Guide PDF. This project was written in JavaScript with the use of Handlebars as a templating engine. Our database used MySQL and MariaDB and was hosted on servers provided by the school. Although the website is no longer able to be viewed, screenshots of functionality can be found in our Step 5 Final PDF. This project provided us great exposure to working as a team with Git, navigating the use of SSH to develop on a remote server, and further sharpening of our JS skills after being initially exposed to it in our CS 290 Web Development class last term.
